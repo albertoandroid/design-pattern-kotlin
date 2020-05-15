@@ -8,7 +8,7 @@ class Amex: PrototypeCard() {
     }
 
     @Throws(CloneNotSupportedException::class)
-    override fun clone(): Any {
+    public override fun clone(): Any {
         System.out.println("Clonado Correctamente AMEX")
         return super.clone() as Amex
     }

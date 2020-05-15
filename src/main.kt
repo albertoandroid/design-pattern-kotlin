@@ -5,12 +5,22 @@ import creational.builder.Card
 import creational.factorymethod.Payment
 import creational.factorymethod.PaymentFactory
 import creational.factorymethod.TypePayment
+import creational.prototype.Amex
 
 fun main(args: Array<String>){
     //testFactoryMethod()
     //testAbstractFactory()
-    testBuilder()
+    //testBuilder()
+    testPrototype()
 
+}
+
+fun testPrototype(){
+    var original = Amex()
+    var copy = original.clone() as? Amex
+
+    System.out.println(original.type)
+    System.out.println(copy!!.type)
 }
 
 fun testBuilder(){
