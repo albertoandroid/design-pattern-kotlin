@@ -3,7 +3,6 @@ import creational.factorymethod.PaymentFactory
 import creational.factorymethod.TypePayment
 
 fun main(args: Array<String>){
-    println("dp")
     testFactoryMethod()
 }
 
