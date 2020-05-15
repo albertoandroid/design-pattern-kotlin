@@ -6,13 +6,26 @@ import creational.factorymethod.Payment
 import creational.factorymethod.PaymentFactory
 import creational.factorymethod.TypePayment
 import creational.prototype.Amex
+import creational.singlenton.CardSinglenton
 
 fun main(args: Array<String>){
     //testFactoryMethod()
     //testAbstractFactory()
     //testBuilder()
-    testPrototype()
+    //testPrototype()
+    testSinglenton()
+}
 
+fun testSinglenton(){
+    var instancia1 = CardSinglenton
+    var instancia2 = CardSinglenton
+
+    if(instancia1.equals(instancia2)){
+        System.out.println("instancia1 es la misma que instancia2")
+    }
+
+    instancia1.doSomething()
+    instancia2.doSomething()
 }
 
 fun testPrototype(){
