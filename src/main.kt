@@ -1,4 +1,8 @@
 import behavioral.chainresponsability.BankHandler
+import behavioral.command.CreditCardActivateCommand
+import behavioral.command.CreditCardDesactivateCommand
+import behavioral.command.CreditCardInvoker
+import behavioral.command.CreditCardReceiver
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -15,7 +19,18 @@ fun main(args: Array<String>){
     //testBuilder()
     //testPrototype()
     //testSinglenton()
-    testChainOfResponsability()
+    //testChainOfResponsability()
+    testCommand()
+}
+
+fun testCommand(){
+    val creditCard = CreditCardReceiver()
+    val invoker = CreditCardInvoker()
+    invoker.setCommand(CreditCardActivateCommand(creditCard))
+    invoker.run()
+
+    invoker.setCommand(CreditCardDesactivateCommand(creditCard))
+    invoker.run()
 }
 
 fun testChainOfResponsability(){
