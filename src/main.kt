@@ -3,6 +3,9 @@ import behavioral.command.CreditCardActivateCommand
 import behavioral.command.CreditCardDesactivateCommand
 import behavioral.command.CreditCardInvoker
 import behavioral.command.CreditCardReceiver
+import behavioral.interpreter.AndExpression
+import behavioral.interpreter.OrExpression
+import behavioral.interpreter.TerminalExpression
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -13,6 +16,7 @@ import creational.factorymethod.TypePayment
 import creational.prototype.Amex
 import creational.singlenton.CardSinglenton
 
+
 fun main(args: Array<String>){
     //testFactoryMethod()
     //testAbstractFactory()
@@ -20,7 +24,26 @@ fun main(args: Array<String>){
     //testPrototype()
     //testSinglenton()
     //testChainOfResponsability()
-    testCommand()
+    //testCommand()
+    //testInterpreter()
+
+}
+
+
+
+
+
+fun testInterpreter(){
+    val cero = TerminalExpression("0")
+    val uno = TerminalExpression("1")
+
+    val constainsOneOrCero = OrExpression(cero, uno)
+    System.out.println(constainsOneOrCero.interpret("cero"))
+    System.out.println(constainsOneOrCero.interpret("0"))
+
+    val constainsOneAndCero = AndExpression(cero, uno)
+    System.out.println(constainsOneAndCero.interpret("cero, 0"))
+    System.out.println(constainsOneAndCero.interpret("0, 1"))
 }
 
 fun testCommand(){
