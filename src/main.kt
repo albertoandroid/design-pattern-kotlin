@@ -1,3 +1,4 @@
+import behavioral.chainresponsability.BankHandler
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -13,7 +14,13 @@ fun main(args: Array<String>){
     //testAbstractFactory()
     //testBuilder()
     //testPrototype()
-    testSinglenton()
+    //testSinglenton()
+    testChainOfResponsability()
+}
+
+fun testChainOfResponsability(){
+    val bank = BankHandler()
+    bank.creditCardRequest(1000000)
 }
 
 fun testSinglenton(){
