@@ -6,6 +6,10 @@ import behavioral.command.CreditCardReceiver
 import behavioral.interpreter.AndExpression
 import behavioral.interpreter.OrExpression
 import behavioral.interpreter.TerminalExpression
+import behavioral.iterator.CardList
+import behavioral.mediator.ConcreteColleague1
+import behavioral.mediator.ConcreteColleague2
+import behavioral.mediator.ConcreteMediator
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -26,12 +30,39 @@ fun main(args: Array<String>){
     //testChainOfResponsability()
     //testCommand()
     //testInterpreter()
+    //testIterator()
+    testMediator()
 
 }
 
+fun testMediator(){
+    val mediator = ConcreteMediator()
+    val user1 = ConcreteColleague1(mediator)
+    val user2 = ConcreteColleague2(mediator)
 
+    mediator.setColleague1(user1)
+    mediator.setColleague2(user2)
 
+    user1.send("Hola Como estas soy el Usuario 1")
+    user2.send("Estoy muy bien, gracias por preguntar.")
+}
 
+fun testIterator(){
+    val cards: Array<behavioral.iterator.Card?> = arrayOfNulls<behavioral.iterator.Card?>(5)
+    cards[0] = behavioral.iterator.Card("VISA")
+    cards[1] = behavioral.iterator.Card("AMEX")
+    cards[2] = behavioral.iterator.Card("MASTER CARD")
+    cards[3] = behavioral.iterator.Card("APPLE CARD")
+    cards[4] = behavioral.iterator.Card("GOOGLE CARD")
+
+    val lista = CardList(cards)
+    val iterator = lista.iterator()
+
+    while (iterator.hasNext()){
+        val tarjeta: behavioral.iterator.Card = iterator.next() as behavioral.iterator.Card
+        System.out.println(tarjeta.type)
+    }
+}
 
 fun testInterpreter(){
     val cero = TerminalExpression("0")
