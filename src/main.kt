@@ -13,6 +13,10 @@ import behavioral.mediator.ConcreteMediator
 import behavioral.memento.ArticleMemento
 import behavioral.memento.ArticleOriginator
 import behavioral.memento.Carataker
+import behavioral.observer.Car
+import behavioral.observer.MessagePublisher
+import behavioral.observer.Pedestrian
+import behavioral.observer.TrafficLight
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -35,7 +39,23 @@ fun main(args: Array<String>){
     //testInterpreter()
     //testIterator()
     //testMediator()
-    testMemento()
+    //testMemento()
+    testObserver()
+
+}
+
+fun testObserver(){
+    var car = Car()
+    var pedestrian = Pedestrian()
+    var trafficLight = TrafficLight("CAR_GREEN")
+    var messagePublisher = MessagePublisher()
+    messagePublisher.attach(car)
+    messagePublisher.attach(pedestrian)
+    messagePublisher.notifyUpdate(trafficLight)
+
+    Thread.sleep(3000)
+    trafficLight.status = "RED_CAR"
+    messagePublisher.notifyUpdate(trafficLight)
 
 }
 
