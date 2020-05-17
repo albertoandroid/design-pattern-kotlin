@@ -17,6 +17,9 @@ import behavioral.observer.Car
 import behavioral.observer.MessagePublisher
 import behavioral.observer.Pedestrian
 import behavioral.observer.TrafficLight
+import behavioral.state.MobileAlertStateContext
+import behavioral.state.Silent
+import behavioral.state.Vibration
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -40,8 +43,23 @@ fun main(args: Array<String>){
     //testIterator()
     //testMediator()
     //testMemento()
-    testObserver()
+    //testObserver()
+    testState()
 
+}
+
+fun testState(){
+    var context = MobileAlertStateContext()
+    context.alert()
+    context.alert()
+    Thread.sleep(3000)
+    context.setState(Vibration())
+    context.alert()
+    context.alert()
+    Thread.sleep(3000)
+    context.setState(Silent())
+    context.alert()
+    context.alert()
 }
 
 fun testObserver(){
