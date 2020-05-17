@@ -10,6 +10,9 @@ import behavioral.iterator.CardList
 import behavioral.mediator.ConcreteColleague1
 import behavioral.mediator.ConcreteColleague2
 import behavioral.mediator.ConcreteMediator
+import behavioral.memento.ArticleMemento
+import behavioral.memento.ArticleOriginator
+import behavioral.memento.Carataker
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -31,7 +34,31 @@ fun main(args: Array<String>){
     //testCommand()
     //testInterpreter()
     //testIterator()
-    testMediator()
+    //testMediator()
+    testMemento()
+
+}
+
+fun testMemento(){
+    var carataker = Carataker()
+    var article = ArticleOriginator(1, "Memento", "Memento es una pelicula")
+    System.out.println(article.text)
+
+    carataker.addMemento(article.createMemento())
+
+    article.text = "Memento es una pelicula de Nolam protagonizada por Guy Pearce"
+    System.out.println(article.text)
+    carataker.addMemento(article.createMemento())
+
+    var memento1: ArticleMemento = carataker.getMemento(0)
+    var memento2: ArticleMemento = carataker.getMemento(1)
+
+    article.restore(memento1)
+    System.out.println(article.text)
+
+    article.restore(memento2)
+    System.out.println(article.text)
+
 
 }
 
