@@ -20,6 +20,9 @@ import behavioral.observer.TrafficLight
 import behavioral.state.MobileAlertStateContext
 import behavioral.state.Silent
 import behavioral.state.Vibration
+import behavioral.strategy.CapitalStrategyTextFormatter
+import behavioral.strategy.Context
+import behavioral.strategy.LowerStrategyTextFormatter
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -44,8 +47,17 @@ fun main(args: Array<String>){
     //testMediator()
     //testMemento()
     //testObserver()
-    testState()
+    //testState()
+    textStrategy()
 
+}
+
+fun textStrategy(){
+    var context: Context = Context(CapitalStrategyTextFormatter())
+    context.publishText("este texto sera convertido a Mayusculas a través de nuestro algoritmo")
+
+    var contextLower = Context(LowerStrategyTextFormatter())
+    contextLower.publishText("ESTE TEXTO SERA CONVERTIDO A MINUSCULAS A TRAVÉS DE NUESTRO ALGORITMO")
 }
 
 fun testState(){
