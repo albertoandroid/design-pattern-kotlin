@@ -23,6 +23,8 @@ import behavioral.state.Vibration
 import behavioral.strategy.CapitalStrategyTextFormatter
 import behavioral.strategy.Context
 import behavioral.strategy.LowerStrategyTextFormatter
+import behavioral.templatemethod.Paypal
+import behavioral.templatemethod.Visa
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -48,11 +50,21 @@ fun main(args: Array<String>){
     //testMemento()
     //testObserver()
     //testState()
-    textStrategy()
+    //testStrategy()
+    testTemplateMethod()
 
 }
 
-fun textStrategy(){
+fun testTemplateMethod(){
+    var paymentMethodVisa = Visa()
+    paymentMethodVisa.makePayment()
+
+    var paymentMethodPaypal = Paypal()
+    paymentMethodPaypal.makePayment()
+
+}
+
+fun testStrategy(){
     var context: Context = Context(CapitalStrategyTextFormatter())
     context.publishText("este texto sera convertido a Mayusculas a través de nuestro algoritmo")
 
