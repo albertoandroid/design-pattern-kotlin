@@ -25,6 +25,8 @@ import behavioral.strategy.Context
 import behavioral.strategy.LowerStrategyTextFormatter
 import behavioral.templatemethod.Paypal
 import behavioral.templatemethod.Visa
+import behavioral.visitor.BlackCreditCardVisitor
+import behavioral.visitor.GassolineOffer
 import creational.abstractfactory.MonthlyGoogleFactory
 import creational.abstractfactory.PaymentInAdvanceCardFactory
 import creational.abstractfactory.PaymentMethodClient
@@ -51,8 +53,14 @@ fun main(args: Array<String>){
     //testObserver()
     //testState()
     //testStrategy()
-    testTemplateMethod()
+    //testTemplateMethod()
+    testVisitor()
 
+}
+
+fun testVisitor(){
+    var oferta = GassolineOffer()
+    oferta.accept(BlackCreditCardVisitor())
 }
 
 fun testTemplateMethod(){
