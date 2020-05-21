@@ -36,6 +36,12 @@ import creational.factorymethod.PaymentFactory
 import creational.factorymethod.TypePayment
 import creational.prototype.Amex
 import creational.singlenton.CardSinglenton
+import structural.adapter.Adapter
+import structural.adapter.OperationAdaptee
+import structural.bridge.ClassicCreditCard
+import structural.bridge.SecureCreditCard
+import structural.bridge.UnsecureCreditCard
+import kotlin.time.seconds
 
 
 fun main(args: Array<String>){
@@ -54,7 +60,30 @@ fun main(args: Array<String>){
     //testState()
     //testStrategy()
     //testTemplateMethod()
-    testVisitor()
+    //testVisitor()
+    //testAdapter()
+    testBridge()
+
+}
+
+fun testBridge(){
+    var classic = ClassicCreditCard(UnsecureCreditCard())
+    classic.makePayment()
+
+    classic = ClassicCreditCard(SecureCreditCard())
+    classic.makePayment()
+}
+
+fun testAdapter(){
+    var adaptee = OperationAdaptee(3, 4)
+    if(adaptee.sum() == 7){
+        System.out.println("ok Int")
+    }
+    var target = Adapter(adaptee)
+    if(target.getSum == "7"){
+        System.out.println("ok String")
+    }
+    System.out.println(target.getSum)
 
 }
 
