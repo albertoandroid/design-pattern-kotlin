@@ -41,6 +41,13 @@ import structural.adapter.OperationAdaptee
 import structural.bridge.ClassicCreditCard
 import structural.bridge.SecureCreditCard
 import structural.bridge.UnsecureCreditCard
+import structural.composite.AccountComposite
+import structural.composite.CurrentAccount
+import structural.composite.SavingsAccount
+import structural.decorator.BlackCreditComponent
+import structural.decorator.GoldCreditComponent
+import structural.decorator.InternationalPaymentDecorator
+import structural.decorator.SecureDecorator
 import kotlin.time.seconds
 
 
@@ -62,8 +69,33 @@ fun main(args: Array<String>){
     //testTemplateMethod()
     //testVisitor()
     //testAdapter()
-    testBridge()
+    //testBridge()
+    //testComposite()
+    testDecorator()
 
+}
+
+fun testDecorator(){
+    var blackInternationalPayment = InternationalPaymentDecorator(BlackCreditComponent())
+    System.out.println("----Tarjeta Black configurada-----")
+    blackInternationalPayment.showCredit()
+
+    var goldSecurePayment = SecureDecorator(GoldCreditComponent())
+    System.out.println("----Tarjeta Gold configurada-----")
+    goldSecurePayment.showCredit()
+}
+
+
+
+fun testComposite(){
+    var savings = SavingsAccount()
+    var current = CurrentAccount()
+
+    var composite = AccountComposite()
+    composite.addAccount(savings)
+    composite.addAccount(current)
+
+    composite.showAccountName()
 }
 
 fun testBridge(){
