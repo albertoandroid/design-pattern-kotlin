@@ -48,6 +48,7 @@ import structural.decorator.BlackCreditComponent
 import structural.decorator.GoldCreditComponent
 import structural.decorator.InternationalPaymentDecorator
 import structural.decorator.SecureDecorator
+import structural.facade.CreditMarketFacade
 import kotlin.time.seconds
 
 
@@ -71,8 +72,16 @@ fun main(args: Array<String>){
     //testAdapter()
     //testBridge()
     //testComposite()
-    testDecorator()
+    //testDecorator()
+    testFacade()
 
+}
+
+fun testFacade(){
+    var facade = CreditMarketFacade()
+    facade.showCreditBlack()
+    facade.showCreditGold()
+    facade.showCreditSilver()
 }
 
 fun testDecorator(){
