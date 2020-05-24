@@ -49,6 +49,10 @@ import structural.decorator.GoldCreditComponent
 import structural.decorator.InternationalPaymentDecorator
 import structural.decorator.SecureDecorator
 import structural.facade.CreditMarketFacade
+import structural.flyweight.Enemy
+import structural.flyweight.EnemyFactory
+import structural.proxy.ProxyInternet
+import java.util.*
 import kotlin.time.seconds
 
 
@@ -73,8 +77,38 @@ fun main(args: Array<String>){
     //testBridge()
     //testComposite()
     //testDecorator()
-    testFacade()
+    //testFacade()
+    //testFlywight()
+    testProxy()
 
+
+}
+
+fun testProxy(){
+    var internet = ProxyInternet()
+    internet.connectTo("udemy.com")
+    internet.connectTo("facebook.com")
+}
+
+fun testFlywight(){
+    for(i in 0..15){
+        val enemy: Enemy? = EnemyFactory.getEnemy(getRandomEnemyType())
+        enemy?.setWeapon(getRandomWeapon()!!)
+        enemy?.lifePoints()
+    }
+}
+
+private val enemyType = arrayOf("Private", "Detective")
+private val weapon = arrayOf("Fusil", "Pistola", "Revolver","9mm")
+fun getRandomEnemyType(): String?{
+    val r = Random()
+    val randInt: Int = r.nextInt(enemyType.size)
+    return enemyType[randInt]
+}
+fun getRandomWeapon(): String?{
+    val r = Random()
+    val randInt: Int = r.nextInt(weapon.size)
+    return weapon[randInt]
 }
 
 fun testFacade(){
